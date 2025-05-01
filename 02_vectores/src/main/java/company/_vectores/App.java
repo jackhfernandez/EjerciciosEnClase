@@ -24,6 +24,7 @@ public class App {
 
     llenarDatos(numeros);
     presentarDatos(numeros);
+    encontrarMayorMenor(numeros);
   }
 
   // Agregar elementos al vector
@@ -32,11 +33,10 @@ public class App {
     for (int i = 0; i < MAX_NUM; i++) { // i = i + 1
       //System.out.print("Ingrese numero: ");
       //numeros[i] = scanner.nextInt();
-      
+
       //numeros[i] = k;
       //k += 10; // k = K + 10
-      
-      numeros[i] = (int) (Math.random()*101);
+      numeros[i] = (int) (Math.random() * 101);
     }
   }
 
@@ -47,18 +47,32 @@ public class App {
       System.out.print(num + " ");
     }
   }
-  
+
   // Mostrar numero mayor y numero menor
-  static void encontrarMayorMenor(int numeros[]){
+  static void encontrarMayorMenor(int numeros[]) {
+    System.out.println("\n\nMostrando numero mayor - menor");
+    int mayor = numeros[0]; // numeros[] = {10,30,5,4,2,6,..}
+    int menor = numeros[0];
+
+    for (int i = 0; i < MAX_NUM; i++) {
+      if (mayor < numeros[i]) {
+        mayor = numeros[i];
+      }
+      if (menor > numeros[i]) {
+        menor = numeros[i];
+      }
+    }
+    System.out.println("Mayor: " + mayor);
+    System.out.println("Menor: " + menor);
   }
-  
+
   // Modificar valor
-  static void modificarValor(){
-    
+  static void modificarValor() {
+
   }
-  
+
   // Intercambiar valores
-  static void intercambiarValores(){
-    
+  static void intercambiarValores() {
+
   }
 }
