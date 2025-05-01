@@ -20,6 +20,7 @@ public class App {
   public static void main(String[] args) {
     //paradigmaSecuencial();
     //paradigmaEstructurado();
+    paradigmaProcedimental();
   }
 
   // Ejemplo del paradigma secuencial
@@ -60,5 +61,28 @@ public class App {
       monto = monto - dcto;
     }
     System.out.println("- Producto: "+nombreProducto+ "\n- Monto: " + monto);
+  }
+
+  public static void paradigmaProcedimental(){
+    int num1, num2, num3;
+    num1 = leerNumero("Ingrese numero 1: ");
+    num2 = leerNumero("Ingrese numero 2: ");
+    num3 = leerNumero("Ingrese numero 3: ");
+
+    // Encontrar el mayor valor
+    if (num1 > num2 && num1 > num3) {
+      System.out.println("El mayor es: " + num1);
+    } else if (num2 > num1 && num2 > num3) {
+      System.out.println("El mayor es: " + num2);
+    } else {
+      System.out.println("El mayor es: " + num3);
+    }
+  }
+
+  public static int leerNumero(String mensaje){
+    int numero;
+    System.out.print(mensaje);
+    numero = scanner.nextInt();
+    return numero;
   }
 }
