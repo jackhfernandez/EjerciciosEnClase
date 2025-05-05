@@ -26,6 +26,7 @@ public class App {
     presentarDatos(numeros);
     encontrarMayorMenor(numeros);
     modificarValor(numeros);
+    intercambiarValores(numeros);
   }
 
   // Agregar elementos al vector
@@ -85,7 +86,19 @@ public class App {
   }
 
   // Intercambiar valores
-  static void intercambiarValores() {
-
+  static void intercambiarValores(int numeros[]) {
+    System.out.println("\n\nIntercambiar valores ");
+    
+    System.out.println("Ingrese la primera posicion: ");
+    int pos1 = scanner.nextInt();
+    
+    System.out.println("Ingrese la segunda posicion: ");
+    int pos2 = scanner.nextInt();
+    
+    int aux = numeros[pos1];
+    numeros[pos1] = numeros[pos2];
+    numeros[pos2] = aux;
+    
+    presentarDatos(numeros);
   }
 }
