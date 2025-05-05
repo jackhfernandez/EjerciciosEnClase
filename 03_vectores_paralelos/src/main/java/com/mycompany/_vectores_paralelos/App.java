@@ -72,13 +72,15 @@ public class App {
   // Presentar total de alumnos por CURSO
   static void totalAlumnoCurso(int notas[], String nomAlumnos[], String cursos[]) {
     System.out.println("\nCantidad alumnos por curso");
-    int curso = 0;
+    int contador = 0; String nombreCurso="";
     for (int i = 0; i < MAX-1; i++) {
-      if (cursos[i].equals(cursos[i])) {
-        curso++;
+      if (!nombreCurso.equals(cursos[i])) {
+        nombreCurso=cursos[i];
+        contador++;
+        
       }
     }
-    System.out.println("\nCantidad alumnos en el mismo curso " + curso);
+    System.out.println("\nCantidad alumnos en el mismo curso " + contador+" "+ nombreCurso);
   }
 
   // Leer nota
