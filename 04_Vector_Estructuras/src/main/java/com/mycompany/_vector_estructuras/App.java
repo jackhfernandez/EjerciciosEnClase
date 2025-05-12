@@ -19,7 +19,7 @@ class Alumno {
 
 public class App {
   
-  static final int MAX = 10;
+  static final int MAX = 2;
   static Scanner scanner = new Scanner(System.in);
 
   public static void main(String[] args) {
@@ -34,22 +34,74 @@ public class App {
     A2 = new Alumno();
 
     alumnos = new Alumno[MAX];
+    
+    // Llamar funciones 
+    llenado(alumnos);
+    presentar(alumnos);
+    buscarPorCodigo(alumnos);
   }
   
   // OPERACIONES PARA 1 Alumno: llenar, mostrar
   static void llenarAlumnos(Alumno A){
-    System.out.println("Ingrese codigo: ");
+    System.out.print("Ingrese codigo: ");
     A.codigo = scanner.next();
-    System.out.println("Ingrese nombre: ");
+    scanner.nextLine();
+    System.out.print("Ingrese nombre: ");
     A.nombre = scanner.nextLine();
-    System.out.println("Ingrese curso: ");
+    System.out.print("Ingrese curso: ");
     A.curso = scanner.nextLine();
-    System.out.println("Ingrese nota: ");
+    System.out.print("Ingrese nota: ");
     A.nota = scanner.nextInt();
   }
   
   static void mostrarAlumno(Alumno A){
     System.out.println(A.codigo + " - " + A.nombre 
     + " - " + A.curso + " - " + A.nota);
+  }
+  
+  // OPeraciones | Funciones para el vector alumnos
+  // Llenado, Presentar , Ordenar, Busqueda, Intercambiar
+  static void llenado(Alumno alumnos[]){
+    for (int i = 0; i < MAX; i++) {
+      System.out.println("Alumno " + (i+1) + ": ");
+      // Llamando a la funcion
+      
+      alumnos[i] = new Alumno();
+      llenarAlumnos(alumnos[i]);
+      
+      /*// Linea a linea
+      System.out.println("Ingrese nombre: ");
+      alumnos[i].nombre = scanner.nextLine();*/
+    }
+  }
+  
+  static void presentar(Alumno alumnos[]){
+    System.out.println("\nMostrando alumno\n");
+    for (int i = 0; i < MAX; i++) {
+      mostrarAlumno(alumnos[i]);
+    }
+  }
+  
+  // FUNCION PARA MOSTRAR ALUMNOS POR CODIGO
+  // Mostrar datos del alumno encontrado o mensaje de error
+  static void buscarPorCodigo(Alumno alumnos[]){
+    System.out.print("Ingrese el codigo: ");
+    String codigo = scanner.next();
+    boolean encontrado=false;
+    int indice =0;
+    for (int i = 0; i < MAX; i++) {
+      if(codigo.equals(alumnos[i].codigo)) {
+        indice = i;
+        encontrado=true;
+      } else {
+        encontrado=false;
+      }
+    }
+    if (encontrado == true){
+      System.out.println("\nAlumno encontrado");
+      mostrarAlumno(alumnos[indice]);
+    } else {
+      System.out.println("\nAlumno no encontrado");
+    }
   }
 }
