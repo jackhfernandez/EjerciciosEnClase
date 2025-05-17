@@ -1,6 +1,7 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+/**
+ * Creamos una clase. Pedimos datos al usuario, la mostramos...
  */
+
 package com.mycompany._vector_estructuras;
 
 import java.util.Scanner;
@@ -9,6 +10,8 @@ import java.util.Scanner;
  *
  * @author admin
  */
+
+// 1. Se crea la clase alumno
 class Alumno {
   // Atributos campos - datos
   String codigo;
@@ -19,6 +22,7 @@ class Alumno {
 
 public class App {
   
+  // 2. Constantes globales
   static final int MAX = 2;
   static Scanner scanner = new Scanner(System.in);
 
@@ -33,6 +37,7 @@ public class App {
     A1 = new Alumno();
     A2 = new Alumno();
 
+    // Se asigna espacio en memoria al vector alumnos[]
     alumnos = new Alumno[MAX];
     
     // Llamar funciones 
