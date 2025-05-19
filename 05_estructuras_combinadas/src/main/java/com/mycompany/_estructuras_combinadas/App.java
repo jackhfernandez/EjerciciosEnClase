@@ -56,7 +56,7 @@ public class App {
     llenarEmpresa(empresa);
     
     // Mostrar 
-    mostrarEmpresa(empresa);
+    //mostrarEmpresa(empresa);
   }
   
   // Llenar datos familiares
@@ -107,10 +107,10 @@ public class App {
   }
   
   // Mostrar empresa
-  static void mostrarEmpresa(Empleado empresa []){
+  static void mostrarEmpresa(Empleado empleado, Empleado empresa []){
     for (int i = 0; i < MAX; i++) {
       mostrarEmpleado(empresa[i]);
-    
+      mostrarDatosFamiliares(empleado.df);
     }
   }
 }
