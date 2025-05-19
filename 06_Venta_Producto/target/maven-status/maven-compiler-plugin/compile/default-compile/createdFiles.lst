@@ -1,1 +1,4 @@
-com\mycompany\ventaproducto\VentaProducto.class
+com\mycompany\ventaproducto\Producto.class
+com\mycompany\ventaproducto\VentasR.class
+com\mycompany\ventaproducto\Empleado.class
+com\mycompany\ventaproducto\APP.class

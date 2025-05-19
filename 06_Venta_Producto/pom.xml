@@ -8,7 +8,7 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.release>19</maven.compiler.release>
-        <exec.mainClass>com.mycompany.ventaproducto.VentaProducto</exec.mainClass>
+        <exec.mainClass>com.mycompany.ventaproducto.APP</exec.mainClass>
     </properties>
     <name>06_Venta_Producto</name>
 </project>
