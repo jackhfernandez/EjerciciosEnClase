@@ -45,6 +45,10 @@ public class App {
   // 3. en ele main, crear el vector empresa
   // cons MAX -> 3
   public static void main(String[] args) {
+    
+    //DatosFamiliares df = new DatosFamiliares();
+    //Empleado e = new Empleado();
+    
     // Vector empresa
     Empleado empresa[] = new Empleado[MAX];
 
@@ -72,7 +76,7 @@ public class App {
     System.out.println("Direccion: " + df.direccion + "Distrito: " + df.distrito + "Nro hijos: " + df.numHijos);
   }
   
-  // Llenar datos Familiares
+  // Llenar datos empleado
   static void llenarEmpleado(Empleado empleado){
     System.out.println("LLenar datos del empleado");
     System.out.print("DNI: ");
@@ -90,6 +94,7 @@ public class App {
   // Mostrar empleado
   static void mostrarEmpleado(Empleado empleado){
     System.out.println("NOMBRE: "+empleado.nombres+" DNI: "+empleado.dni+" EDAD: "+empleado.edad+ " Area Trabajo: "+empleado.areaTrabajo);
+    mostrarDatosFamiliares(empleado.df);
   }
   
   // LLenar empresa
@@ -102,9 +107,10 @@ public class App {
   }
   
   // Mostrar empresa
-  static void mostrarEmpresa(Empleado empresa[]){
+  static void mostrarEmpresa(Empleado empresa []){
     for (int i = 0; i < MAX; i++) {
       mostrarEmpleado(empresa[i]);
+    
     }
   }
 }
