@@ -46,8 +46,7 @@ public class App {
   // cons MAX -> 3
   public static void main(String[] args) {
     
-    //DatosFamiliares df = new DatosFamiliares();
-    //Empleado e = new Empleado();
+    Empleado e = new Empleado();
     
     // Vector empresa
     Empleado empresa[] = new Empleado[MAX];
@@ -56,24 +55,23 @@ public class App {
     llenarEmpresa(empresa);
     
     // Mostrar 
-    //mostrarEmpresa(empresa);
+    mostrarEmpresa(empresa);
   }
   
   // Llenar datos familiares
-  static void llenarDatosFamiliares(DatosFamiliares df){
+  static void llenarDf(DatosFamiliares df){
     System.out.println("\nIngresar datos familiares");
-    System.out.println("Direccion: ");
+    System.out.print("Direccion: ");
     df.direccion = scanner.next();
-    System.out.println("Nro Hijos: ");
+    System.out.print("Nro Hijos: ");
     df.numHijos = scanner.nextInt();
-    System.out.println("Distrito: ");
+    System.out.print("Distrito: ");
     df.distrito = scanner.next();
   }
   
   // Mostrar datos familiares
-  static void mostrarDatosFamiliares(DatosFamiliares df){
-    System.out.println("\nMostrando datos familiares");
-    System.out.println("Direccion: " + df.direccion + "Distrito: " + df.distrito + "Nro hijos: " + df.numHijos);
+  static void mostrarDf(DatosFamiliares df){
+    System.out.println("Direccion: " + df.direccion + "\nDistrito: " + df.distrito + "\nNro hijos: " + df.numHijos);
   }
   
   // Llenar datos empleado
@@ -88,29 +86,29 @@ public class App {
     System.out.print("Area Trabajo: ");
     empleado.areaTrabajo = scanner.next();
     empleado.df = new DatosFamiliares();
-    llenarDatosFamiliares(empleado.df);
+    llenarDf(empleado.df);
   }
   
   // Mostrar empleado
   static void mostrarEmpleado(Empleado empleado){
-    System.out.println("NOMBRE: "+empleado.nombres+" DNI: "+empleado.dni+" EDAD: "+empleado.edad+ " Area Trabajo: "+empleado.areaTrabajo);
-    mostrarDatosFamiliares(empleado.df);
+    System.out.println("\nNOMBRE: "+empleado.nombres+"\nDNI: "+empleado.dni+"\nEDAD: "+empleado.edad+ "\nArea Trabajo: "+empleado.areaTrabajo);
+    mostrarDf(empleado.df);
   }
   
   // LLenar empresa
   static void llenarEmpresa(Empleado empresa[]){
     for (int i = 0; i < MAX; i++) {
-      System.out.println("Empleado " + (i+1));
+      System.out.println("\nEmpleado " + (i+1));
       empresa[i] = new Empleado();
       llenarEmpleado(empresa[i]);
     }
   }
   
   // Mostrar empresa
-  static void mostrarEmpresa(Empleado empleado, Empleado empresa []){
+  static void mostrarEmpresa(Empleado empresa []){
+    System.out.println("\nMostrando empleados");
     for (int i = 0; i < MAX; i++) {
       mostrarEmpleado(empresa[i]);
-      mostrarDatosFamiliares(empleado.df);
     }
   }
 }
