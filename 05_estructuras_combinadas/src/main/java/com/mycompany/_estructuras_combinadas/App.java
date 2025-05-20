@@ -46,8 +46,6 @@ public class App {
   // cons MAX -> 3
   public static void main(String[] args) {
     
-    Empleado e = new Empleado();
-    
     // Vector empresa
     Empleado empresa[] = new Empleado[MAX];
 
@@ -75,24 +73,24 @@ public class App {
   }
   
   // Llenar datos empleado
-  static void llenarEmpleado(Empleado empleado){
+  static void llenarEmpleado(Empleado e){
     System.out.println("LLenar datos del empleado");
     System.out.print("DNI: ");
-    empleado.dni = scanner.next();
+    e.dni = scanner.next();
     System.out.print("NOMBRE: ");
-    empleado.nombres = scanner.next();
+    e.nombres = scanner.next();
     System.out.print("EDAD: ");
-    empleado.edad = scanner.nextInt();
+    e.edad = scanner.nextInt();
     System.out.print("Area Trabajo: ");
-    empleado.areaTrabajo = scanner.next();
-    empleado.df = new DatosFamiliares();
-    llenarDf(empleado.df);
+    e.areaTrabajo = scanner.next();
+    e.df = new DatosFamiliares();
+    llenarDf(e.df);
   }
   
   // Mostrar empleado
-  static void mostrarEmpleado(Empleado empleado){
-    System.out.println("\nNOMBRE: "+empleado.nombres+"\nDNI: "+empleado.dni+"\nEDAD: "+empleado.edad+ "\nArea Trabajo: "+empleado.areaTrabajo);
-    mostrarDf(empleado.df);
+  static void mostrarEmpleado(Empleado e){
+    System.out.println("\nNOMBRE: "+e.nombres+"\nDNI: "+e.dni+"\nEDAD: "+e.edad+ "\nArea Trabajo: "+e.areaTrabajo);
+    mostrarDf(e.df);
   }
   
   // LLenar empresa
@@ -105,7 +103,7 @@ public class App {
   }
   
   // Mostrar empresa
-  static void mostrarEmpresa(Empleado empresa []){
+  static void mostrarEmpresa(Empleado empresa[]){
     System.out.println("\nMostrando empleados");
     for (int i = 0; i < MAX; i++) {
       mostrarEmpleado(empresa[i]);
