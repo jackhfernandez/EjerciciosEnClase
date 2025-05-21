@@ -93,6 +93,7 @@ public class APP {
       }
       // Presentar empleados
       case 2 -> {
+        calcularSueldo(empleados, contador);
         mostrarEmpresa(empleados, contador);
       }
       // Realizar venta
@@ -105,6 +106,7 @@ public class APP {
       }
       // Mostrar sueldo
       case 5 -> {
+        calcularSueldo(empleados, contador);
         mostrarSueldo(empleados, contador);
       }
       // Mostrar cantidad de tipos de pago
@@ -169,7 +171,7 @@ public class APP {
     e.codigoEmp = sc.next();
     System.out.print("NOMBRE: ");
     e.nombre = sc.next();
-    System.out.print("TURNO: ");
+    System.out.print("TURNO : ");
     e.turno = sc.next();
     System.out.println("\nCantidad trabajadores " + (contador + 1));
     System.out.println("\nTrabajador registrado con exito!!!\n");
@@ -177,12 +179,13 @@ public class APP {
 
   // Mostrar un empleado
   static void mostrarEmpleado(Empleado e) {
-    System.out.println("\nCODIGO: " + e.codigoEmp + "\nNOMBRE: " + e.nombre + "\nTURNO: " + e.turno);
-    System.out.println("SUELDO: " + e.sueldo);
-    if (e.vr == null){
+    System.out.println("\nCODIGO : " + e.codigoEmp + "\nNOMBRE : " + e.nombre + "\nTURNO  : " + e.turno);
+    System.out.println("SUELDO : " + e.sueldo);
+
+    if (e.vr == null) {
       e.vr = new VentasR();
     }
-    System.out.println("TOTAL: " + e.vr.total);
+    System.out.println("TOTAL  : " + e.vr.total);
     System.out.println("CONTADO: " + e.vr.pagosContado);
     System.out.println("TARJETA: " + e.vr.pagosTarjeta + "\n");
   }
@@ -246,6 +249,8 @@ public class APP {
     }
 
     System.out.println("Venta registrada con exito!!!\n");
+
+    calcularSueldo(empleados, contador);
   }
 
   // 4. Mostrar productos - Almacen
@@ -261,7 +266,6 @@ public class APP {
   // 5. Calcular sueldo
   static void calcularSueldo(Empleado empleados[], int contador) {
     // * 10% de las ventas del trabajador + base = 1120
-
     double sueldoBase = 1120;
     double porcentaje = 0.10;
 
@@ -272,7 +276,6 @@ public class APP {
         empleados[i].sueldo = sueldoBase;
       }
     }
-    System.out.println("Sueldos calculados correctamente");
   }
 
   // 6. Mostrar sueldo de todos los trabajadores
@@ -303,6 +306,6 @@ public class APP {
     System.out.println("\nTipos de pago ");
     System.out.println("\nTotal pagos al contado: " + totalContado);
     System.out.println("Total pagos con tarjeta: " + totalTarjeta);
-    System.out.println("Total ventas: " + (totalContado + totalTarjeta)+"\n");
+    System.out.println("Total ventas: " + (totalContado + totalTarjeta) + "\n");
   }
 }
