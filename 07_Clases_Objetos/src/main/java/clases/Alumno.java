@@ -49,6 +49,7 @@ public class Alumno {
   // B. constructor
   // Metodo que se ejecuta cuando se utiliza NEW
 
+  // Nombre del metodo lleva el mismo nombre de la clase
   public Alumno(String codigo, String nombre, int edad, String carrera) {
     this.codigo = codigo;
     this.nombre = nombre;
@@ -57,12 +58,26 @@ public class Alumno {
   }
   
   public Alumno(){
+
+    // Inicializar valores
+    this.carrera = "EPIC";
+    this.edad = 16;
   }
 
   public Alumno(String codigo, String nombre) {
     this.codigo = codigo;
     this.nombre = nombre;
   }
+
+  public Alumno(String codigo, String nombre, String carrera) {
+    this.codigo = codigo;
+    this.nombre = nombre;
+    this.carrera = carrera;
+  }
  
-  
+  // C: Metodos de accion (propios)
+  public String getAlumno(){
+    return this.codigo + " - " + this.nombre + " - " +
+        this.edad + " - " + this.carrera;
+  }
 }
