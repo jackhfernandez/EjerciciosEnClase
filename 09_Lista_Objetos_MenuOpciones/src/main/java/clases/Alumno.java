@@ -44,4 +44,12 @@ public class Alumno {
   public String getAlumno() {
     return this.codigo + " - " + this.nombre + " - " + this.carrera + " - " + this.edad;
   }
+
+  @Override
+  public String toString() {
+    return "Código: " + codigo + "\n"
+        + "Nombre: " + nombre + "\n"
+        + "Carrera: " + carrera + "\n"
+        + "Edad: " + edad;
+  }
 }

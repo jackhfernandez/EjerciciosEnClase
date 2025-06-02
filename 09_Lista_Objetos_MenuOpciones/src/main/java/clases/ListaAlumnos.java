@@ -10,7 +10,7 @@ package clases;
 // Lista utilizando ARRAY = ARREGLO = VECTOR
 public class ListaAlumnos {
 
-  private final int MAX = 10;
+  private final int MAX = 2;
 
   // Vector de Alumnos
   Alumno alumnos[] = new Alumno[MAX];
@@ -25,6 +25,17 @@ public class ListaAlumnos {
     }
   }
 
+  /*
+  no usar porque rompe el encapsulamiento
+  
+  public int getMAX() {
+    return MAX;
+  }
+
+  public int getContador() {
+    return contador;
+  }
+   */
   public String presentar() {
     String datos = "";
     for (int i = 0; i < this.contador; i++) {
@@ -32,4 +43,18 @@ public class ListaAlumnos {
     }
     return datos;
   }
+
+  public boolean hayEspacio() {
+    return this.contador < this.MAX;
+  }
+  
+  public Alumno buscarPorCodigo(String codigoBuscar){
+    for (int i = 0; i < this.contador; i++) {
+      if (alumnos[i].getCodigo().equals(codigoBuscar)){
+        return alumnos[i];
+      }
+    }
+    return null;
+  }
+ 
 }
