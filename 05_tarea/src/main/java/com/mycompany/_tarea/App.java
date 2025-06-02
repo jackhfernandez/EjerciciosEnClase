@@ -8,6 +8,7 @@ import java.util.Scanner;
  */
 // class df
 class DatosFamiliares {
+
   String direccion;
   int numHijos;
   String distrito;
@@ -15,6 +16,7 @@ class DatosFamiliares {
 
 //Clase Empleado :
 class Empleado {
+
   int Dni;
   String nombre;
   int Edad;
@@ -26,7 +28,7 @@ public class App {
 
   final static int MAX = 2;
   final static Scanner entrada = new Scanner(System.in);
-  
+
   public static void main(String[] args) {
 
     Empleado[] empresa = new Empleado[MAX];
@@ -36,9 +38,10 @@ public class App {
     MostrarEmpresa(empresa);
 
     //menu con la funciones Extra
-    MenuFuncionesExtra(empresa);
+    Menu(empresa);
 
   }
+
   // llenar DF :
   static void llenarDF(DatosFamiliares df) {
 
@@ -58,22 +61,22 @@ public class App {
   }
 
   //Funciones :
-  static void LlenarEmpleado(Empleado empleado) {
+  static void LlenarEmpleado(Empleado E) {
 
     System.out.print("Ingrese DNI : ");
-    empleado.Dni = entrada.nextInt();
+    E.Dni = entrada.nextInt();
     entrada.nextLine();
     System.out.print("Ingrese Nombre : ");
-    empleado.nombre = entrada.nextLine();
+    E.nombre = entrada.nextLine();
 
     System.out.print("Ingrese Edad : ");
-    empleado.Edad = entrada.nextInt();
+    E.Edad = entrada.nextInt();
     entrada.nextLine();
     System.out.print("Ingrese Area de Trabajo : ");
-    empleado.AreaTrabajo = entrada.nextLine();
+    E.AreaTrabajo = entrada.nextLine();
 
-    empleado.df = new DatosFamiliares();
-    llenarDF(empleado.df);
+    E.df = new DatosFamiliares();
+    llenarDF(E.df);
 
   }
 
@@ -99,7 +102,6 @@ public class App {
     }
   }
 
-  //Funciones Extras :
   //Empleados por Area de Trabajo
   static void EmpleadosPorArea(Empleado[] empresa) {
     String area;
@@ -112,9 +114,9 @@ public class App {
     }
   }
 
-  //total de Empleados de todas la areas (aqui se se coloca cada area de trabajo y se cuenta el total y se muetra no se pide area por q mostrara todas)
+  //total de Empleados de todas la areas 
   static void TotalEmpleadosPorArea(Empleado[] empresa) {
-    System.out.println("::::: Empleados por Area de Trabajo ::::::");
+    System.out.println("\nEmpleados por area de trabajo");
 
     // Crear un array de areas de trabajo únicas
     String[] areasUnicas = new String[MAX];
@@ -221,7 +223,7 @@ public class App {
     }
   }
 
-  //eliminar empleado ( no eliminar por q generar error  si no dejar sus datos como 0)
+  // Solo quita los valores de un empleado
   static void EliminarEmpleado(Empleado[] empresa) {
     int dni;
     System.out.println("Ingrese DNI : ");
@@ -239,8 +241,8 @@ public class App {
     }
   }
 
-  //menu con la funciones Extra:
-  static void MenuFuncionesExtra(Empleado[] empresa) {
+  //menu 
+  static void Menu(Empleado[] empresa) {
     int opcion;
     do {
       System.out.println("\n:::: Soluciones ATS :::::");
@@ -257,18 +259,27 @@ public class App {
       opcion = entrada.nextInt();
       entrada.nextLine();
       switch (opcion) {
-        case 1 -> EmpleadosPorArea(empresa);
-        case 2 -> TotalEmpleadosPorArea(empresa);
-        case 3 -> EmpleadoConMayorHijos(empresa);
-        case 4 -> TotalEmpleadosPorDistrito(empresa);
-        case 5 -> OrdenarEmpleadosPorEdad(empresa);
-        case 6 -> BuscarEmpleadoPorDNI(empresa);
-        case 7 -> ModificarDatosEmpleado(empresa);
-        case 8 -> EliminarEmpleado(empresa);
-        case 9 -> System.out.println("Saliendo del menu...");
-        default -> System.out.println("Opcion invalida");
+        case 1 ->
+          EmpleadosPorArea(empresa);
+        case 2 ->
+          TotalEmpleadosPorArea(empresa);
+        case 3 ->
+          EmpleadoConMayorHijos(empresa);
+        case 4 ->
+          TotalEmpleadosPorDistrito(empresa);
+        case 5 ->
+          OrdenarEmpleadosPorEdad(empresa);
+        case 6 ->
+          BuscarEmpleadoPorDNI(empresa);
+        case 7 ->
+          ModificarDatosEmpleado(empresa);
+        case 8 ->
+          EliminarEmpleado(empresa);
+        case 9 ->
+          System.out.println("Saliendo del menu...");
+        default ->
+          System.out.println("Opcion invalida");
       }
     } while (opcion != 9);
   }
-
 }
