@@ -5,7 +5,7 @@ package clases;
 
 /**
  *
- * @author admin
+ * @author Jack
  */
 // Lista utilizando ARRAY = ARREGLO = VECTOR
 public class ListaAlumnos {
@@ -25,9 +25,11 @@ public class ListaAlumnos {
     }
   }
 
-  public void presentar() {
+  public String presentar() {
+    String datos = "";
     for (int i = 0; i < this.contador; i++) {
-      System.out.println(this.alumnos[i].getAlumno());
+      datos = datos + this.alumnos[i].getAlumno() + "\n";
     }
+    return datos;
   }
 }

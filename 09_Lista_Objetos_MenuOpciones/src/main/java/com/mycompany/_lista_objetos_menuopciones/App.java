@@ -3,12 +3,13 @@
  */
 package com.mycompany._lista_objetos_menuopciones;
 
+import clases.Alumno;
 import clases.ListaAlumnos;
 import javax.swing.JOptionPane;
 
 /**
  *
- * @author admin
+ * @author Jack
  */
 public class App {
 
@@ -16,27 +17,46 @@ public class App {
 
     int op;
     ListaAlumnos lista = new ListaAlumnos();
-    do{
+    do {
       op = opciones();
-      switch (op){
-        case 1 -> {}
-        case 2 -> {}
-        case 3 -> {}
-        default -> {}
+      switch (op) {
+        case 1 -> {
+          opAgregarAlumnos(lista);
+        }
+        case 2 -> {
+          JOptionPane.showMessageDialog(null, lista.presentar());
+        }
+        case 3 -> {
+        }
+        default -> {
+        }
       }
     } while (op != 6);
   }
-  
+
   // case 1
-  static void opAgregarAlumnos(){
-    
+  static void opAgregarAlumnos(ListaAlumnos lista) {
+    Alumno nuevo = new Alumno();
+    // Leer datos del alumno
+    String codigo, nombre, carrera;
+    int edad;
+    codigo = JOptionPane.showInputDialog("Ingrese codigo: ");
+    nombre = JOptionPane.showInputDialog("Ingrese nombre: ");
+    carrera = JOptionPane.showInputDialog("Ingrese carrera: ");
+    edad = Integer.parseInt(JOptionPane.showInputDialog("Ingrese edad: "));
+
+    // Instanciar un objeto (new) asignar espacion memoria
+    nuevo = new Alumno(codigo, nombre, carrera, edad);
+
+    lista.agregar(nuevo);
+    JOptionPane.showMessageDialog(null, "Alumno agregado");
   }
-  
-  static int opciones(){
-    String menu = "1. Agregar alumno\n" +
-                  "2. Presentar alumnos\n" +
-                  "3. Buscar alumno\n" +
-                  "6. Salir";
+
+  static int opciones() {
+    String menu = "1. Agregar alumno\n"
+        + "2. Presentar alumnos\n"
+        + "3. Buscar alumno\n"
+        + "6. Salir";
     int opcion = Integer.parseInt(JOptionPane.showInputDialog(menu));
     return opcion;
   }
