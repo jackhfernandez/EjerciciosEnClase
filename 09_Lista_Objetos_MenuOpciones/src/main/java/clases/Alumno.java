@@ -1,13 +1,5 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package clases;
 
-/**
- *
- * @author Jack
- */
 public class Alumno {
 
   private String codigo;
@@ -43,13 +35,5 @@ public class Alumno {
 
   public String getAlumno() {
     return this.codigo + " - " + this.nombre + " - " + this.carrera + " - " + this.edad;
-  }
-
-  @Override
-  public String toString() {
-    return "Código: " + codigo + "\n"
-        + "Nombre: " + nombre + "\n"
-        + "Carrera: " + carrera + "\n"
-        + "Edad: " + edad;
   }
 }

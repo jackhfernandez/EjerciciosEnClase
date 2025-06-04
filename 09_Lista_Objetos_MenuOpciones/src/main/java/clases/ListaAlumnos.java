@@ -1,12 +1,5 @@
-/**
- * Clase utilizando vectores de tipo Alumno
- */
 package clases;
 
-/**
- *
- * @author Jack
- */
 // Lista utilizando ARRAY = ARREGLO = VECTOR
 public class ListaAlumnos {
 
@@ -25,17 +18,6 @@ public class ListaAlumnos {
     }
   }
 
-  /*
-  no usar porque rompe el encapsulamiento
-  
-  public int getMAX() {
-    return MAX;
-  }
-
-  public int getContador() {
-    return contador;
-  }
-   */
   public String presentar() {
     String datos = "";
     for (int i = 0; i < this.contador; i++) {

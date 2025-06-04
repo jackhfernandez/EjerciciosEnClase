@@ -1,16 +1,9 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- */
 package com.mycompany._lista_objetos_menuopciones;
 
 import clases.Alumno;
 import clases.ListaAlumnos;
 import javax.swing.JOptionPane;
 
-/**
- *
- * @author Jack
- */
 public class App {
 
   public static void main(String[] args) {
@@ -59,21 +52,21 @@ public class App {
       JOptionPane.showMessageDialog(null, "Lista llena");
     }
   }
-  
+
   // case 3
-  static void opBuscarAlumnoCodigo(ListaAlumnos lista){
+  static void opBuscarAlumnoCodigo(ListaAlumnos lista) {
     // 1. Ingresar codigo buscar (MAIN)
     // 2. Recorrer la lista de alumnos hasta el contador (LISTA)
     //    2.1 Verificar (comparar) codigo ingresado - c. alumno (LISTA)
     //    2.2 Mostrar datos de alumno encontrado (MAIN)
     //    2.3 Mostrar error de alumno encontrado (MAIN)
-       
-    String codigoBuscar  = JOptionPane.showInputDialog("Ingrese codigo a buscar: ");
-    
+
+    String codigoBuscar = JOptionPane.showInputDialog("Ingrese codigo a buscar: ");
+
     Alumno alEncontrado = lista.buscarPorCodigo(codigoBuscar);
-    
-    if (alEncontrado != null){
-      JOptionPane.showInputDialog(null, "Alumno encontrado " + alEncontrado.toString());
+
+    if (alEncontrado != null) {
+      JOptionPane.showInputDialog(null, "Alumno encontrado\n" + alEncontrado.getAlumno());
     } else {
       JOptionPane.showInputDialog(null, "Alumno con codigo " + codigoBuscar + " no encontrado");
     }
@@ -87,5 +80,10 @@ public class App {
         + "6. Salir";
     int opcion = Integer.parseInt(JOptionPane.showInputDialog(menu));
     return opcion;
+  }
+
+  // case 4
+  static void presentarAlPorCarrera() {
+    // que muestre datos de todos los alumnos
   }
 }
