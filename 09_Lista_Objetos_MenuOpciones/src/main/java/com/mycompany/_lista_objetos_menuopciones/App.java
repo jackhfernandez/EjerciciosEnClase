@@ -29,9 +29,10 @@ public class App {
           totalAlumnosPorCarrera(lista);
         }
         case 6 -> {
-
+          ordenarAlPorCarrera(lista);
         }
         default -> {
+          System.out.println("Opcion no valida!!!");
         }
       }
     } while (op != 7);
@@ -75,14 +76,15 @@ public class App {
     Alumno alEncontrado = lista.buscarPorCodigo(codigoBuscar);
 
     if (alEncontrado != null) {
-      JOptionPane.showInputDialog(null, "Alumno encontrado\n" + alEncontrado.alumnoEncontrado());
+      JOptionPane.showMessageDialog(null, "Alumno encontrado\n" + alEncontrado.alumnoEncontrado());
     } else {
-      JOptionPane.showInputDialog(null, "Alumno con codigo " + codigoBuscar + " no encontrado");
+      JOptionPane.showMessageDialog(null, "Alumno con codigo " + codigoBuscar + " no encontrado");
     }
   }
 
   static int opciones() {
-    String menu = "1. Agregar alumno\n"
+    String menu = ":::: Soluciones ATS ::::\n"
+        + "1. Agregar alumno\n"
         + "2. Presentar alumnos\n"
         + "3. Buscar alumno por codigo\n"
         + "4. Presentar alumnos por carrera\n"
@@ -123,7 +125,7 @@ public class App {
     int cantidad = lista.getCantidad();
 
     if (cantidad == 0) {
-      JOptionPane.showInputDialog(null, "No hay alumnos registrados!!!");
+      JOptionPane.showMessageDialog(null, "No hay alumnos registrados!!!");
     }
 
     // Identificar carreras unicas y contar
@@ -162,8 +164,46 @@ public class App {
   }
 
   // case 6
-  static void ordenarAlPorCarrera() {
+  static void ordenarAlPorCarrera(ListaAlumnos lista) {
     // Mostrar alumnos ordenados de forma alfabetica por carrera
+    int cantidad = lista.getCantidad();
 
+    if (cantidad == 0) {
+      JOptionPane.showMessageDialog(null, "No hay alumnos registrados aun!!!");
+      return;
+    }
+
+    // Crear una copia de los alumnos
+    // Preservar orden original, solo presentacion, no romper el principio de encapsulacion
+    Alumno alumnosTemp[] = new Alumno[cantidad];
+    for (int i = 0; i < cantidad; i++) {
+      alumnosTemp[i] = lista.getAlumno(i);
+    }
+
+    // Ordenamiento usando bubble sort
+    for (int i = 0; i < cantidad - 1; i++) {
+      for (int j = 0; j < cantidad - i - 1; j++) {
+        if (alumnosTemp[j].getCarrera().compareToIgnoreCase(alumnosTemp[j + i].getCarrera()) > 0) {
+          Alumno temp = alumnosTemp[j];
+          alumnosTemp[j] = alumnosTemp[j + 1];
+          alumnosTemp[j + 1] = temp;
+        }
+      }
+    }
+
+    // Mostrar resultados
+    StringBuilder resultado = new StringBuilder("Alumnos ordenados por carrera:\n\n");
+    String carreraActual = "";
+
+    for (int i = 0; i < cantidad; i++) {
+      // si cambia la carrera mostramos el nombre de la nueva carrera
+      if (!alumnosTemp[i].getCarrera().equals(carreraActual)){
+        carreraActual = alumnosTemp[i].getCarrera();
+        resultado.append("\n").append(carreraActual).append("\n");
+      }
+      resultado.append(alumnosTemp[i].alumnoEncontrado()).append("\n");
+    }
+
+    JOptionPane.showMessageDialog(null, resultado.toString());
   }
 }
