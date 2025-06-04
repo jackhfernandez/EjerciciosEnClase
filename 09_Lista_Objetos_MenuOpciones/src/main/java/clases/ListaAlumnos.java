@@ -38,5 +38,17 @@ public class ListaAlumnos {
     }
     return null;
   }
+
+  public int getCantidad() {
+    return contador;
+  }
+
+  public Alumno getAlumno(int indice) {
+    if (indice >= 0 && indice < this.contador) {
+      return this.alumnos[indice];
+    } else {
+      return null;
+    }
+  }
  
 }

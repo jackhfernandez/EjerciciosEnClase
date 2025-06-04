@@ -36,4 +36,8 @@ public class Alumno {
   public String getAlumno() {
     return this.codigo + " - " + this.nombre + " - " + this.carrera + " - " + this.edad;
   }
+  
+  public String alumnoEncontrado() {
+    return this.codigo + " - " + this.nombre + " - " + this.carrera + " - " + this.edad;
+  }
 }
