@@ -55,8 +55,6 @@ public class ListaAlumnos {
     }
   }
 
-  // Nuevos métodos con lógica de negocio encapsulada
-
   public String presentarAlumnosPorCarrera(String carreraBuscar) {
     if (contador == 0) {
       return "No hay alumnos registrados.";
@@ -84,7 +82,7 @@ public class ListaAlumnos {
       return "No hay alumnos registrados.";
     }
 
-    // Identificar carreras únicas y contar
+    // Identificar carreras unicas y contar
     String carreras[] = new String[contador];
     int contadores[] = new int[contador];
     int totalCarreras = 0;
@@ -149,7 +147,7 @@ public class ListaAlumnos {
       // Si cambia la carrera, mostrar el nombre de la nueva carrera
       if (!alumnosTemp[i].getCarrera().equals(carreraActual)) {
         carreraActual = alumnosTemp[i].getCarrera();
-        resultado = resultado + "\n=== " + carreraActual + " ===\n";
+        resultado = resultado + "\n\t" + carreraActual + "\n";
       }
       resultado = resultado + alumnosTemp[i].alumnoEncontrado() + "\n";
     }

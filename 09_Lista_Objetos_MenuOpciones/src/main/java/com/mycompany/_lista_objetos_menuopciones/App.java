@@ -29,7 +29,7 @@ public class App {
     try {
       return Integer.parseInt(JOptionPane.showInputDialog(menu));
     } catch (NumberFormatException e) {
-      JOptionPane.showMessageDialog(null, "Por favor ingrese un número válido");
+      JOptionPane.showMessageDialog(null, "Por favor ingrese un numero valido");
       return mostrarMenu();
     }
   }
@@ -42,50 +42,50 @@ public class App {
       case 4 -> presentarAlumnosPorCarrera(lista);
       case 5 -> mostrarTotalAlumnosPorCarrera(lista);
       case 6 -> mostrarAlumnosOrdenados(lista);
-      case 7 -> JOptionPane.showMessageDialog(null, "¡Gracias por usar el sistema!");
-      default -> JOptionPane.showMessageDialog(null, "Opción no válida");
+      case 7 -> JOptionPane.showMessageDialog(null, "¡Gracias por usar soluciones ATS!");
+      default -> JOptionPane.showMessageDialog(null, "Opcion no valida");
     }
   }
 
   static void agregarAlumno(ListaAlumnos lista) {
     if (lista.estaLlena()) {
-      JOptionPane.showMessageDialog(null, "Lista llena. No se pueden agregar más alumnos.");
+      JOptionPane.showMessageDialog(null, "Lista llena. No se pueden agregar mas alumnos.");
       return;
     }
 
     try {
-      String codigo = solicitarDato("Código:");
+      String codigo = solicitarDato("Codigo:");
       if (!Alumno.validarCodigo(codigo)) {
-        JOptionPane.showMessageDialog(null, "El código no puede estar vacío");
+        JOptionPane.showMessageDialog(null, "El codigo no puede estar vacio");
         return;
       }
 
       if (!lista.validarCodigoUnico(codigo.trim())) {
-        JOptionPane.showMessageDialog(null, "Ya existe un alumno con ese código");
+        JOptionPane.showMessageDialog(null, "Ya existe un alumno con ese codigo");
         return;
       }
 
       String nombre = solicitarDato("Nombre:");
       if (!Alumno.validarNombre(nombre)) {
-        JOptionPane.showMessageDialog(null, "El nombre no puede estar vacío");
+        JOptionPane.showMessageDialog(null, "El nombre no puede estar vacio");
         return;
       }
 
       String carrera = solicitarDato("Carrera:");
       if (!Alumno.validarCarrera(carrera)) {
-        JOptionPane.showMessageDialog(null, "La carrera no puede estar vacía");
+        JOptionPane.showMessageDialog(null, "La carrera no puede estar vacia");
         return;
       }
 
       String edadStr = solicitarDato("Edad:");
       if (edadStr == null || edadStr.trim().isEmpty()) {
-        JOptionPane.showMessageDialog(null, "La edad no puede estar vacía");
+        JOptionPane.showMessageDialog(null, "La edad no puede estar vacia");
         return;
       }
 
       int edad = Integer.parseInt(edadStr);
       if (!Alumno.validarEdad(edad)) {
-        JOptionPane.showMessageDialog(null, "La edad debe ser un número entre 1 y 119");
+        JOptionPane.showMessageDialog(null, "La edad debe ser un numero entre 1 y 119");
         return;
       }
 
@@ -94,7 +94,7 @@ public class App {
       JOptionPane.showMessageDialog(null, "Alumno agregado exitosamente");
 
     } catch (NumberFormatException e) {
-      JOptionPane.showMessageDialog(null, "La edad debe ser un número válido");
+      JOptionPane.showMessageDialog(null, "La edad debe ser un numero valido");
     }
   }
 
@@ -113,9 +113,9 @@ public class App {
       return;
     }
 
-    String codigo = solicitarDato("Ingrese el código a buscar:");
+    String codigo = solicitarDato("Ingrese el codigo a buscar:");
     if (!Alumno.validarCodigo(codigo)) {
-      JOptionPane.showMessageDialog(null, "Debe ingresar un código válido");
+      JOptionPane.showMessageDialog(null, "Debe ingresar un codigo valido");
       return;
     }
 
@@ -124,7 +124,7 @@ public class App {
     if (alumnoEncontrado != null) {
       JOptionPane.showMessageDialog(null, "Alumno encontrado:\n" + alumnoEncontrado.alumnoEncontrado());
     } else {
-      JOptionPane.showMessageDialog(null, "Alumno con código " + codigo + " no encontrado");
+      JOptionPane.showMessageDialog(null, "Alumno con codigo " + codigo + " no encontrado");
     }
   }
 
@@ -136,7 +136,7 @@ public class App {
 
     String carrera = solicitarDato("Ingrese la carrera a buscar:");
     if (!Alumno.validarCarrera(carrera)) {
-      JOptionPane.showMessageDialog(null, "Debe ingresar una carrera válida");
+      JOptionPane.showMessageDialog(null, "Debe ingresar una carrera valida");
       return;
     }
 

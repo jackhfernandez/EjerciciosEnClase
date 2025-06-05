@@ -41,7 +41,7 @@ public class Alumno {
     return this.codigo + " - " + this.nombre + " - " + this.carrera + " - " + this.edad;
   }
 
-  // Métodos de validación
+  // Metodos de validacion
   public static boolean validarCodigo(String codigo) {
     return codigo != null && !codigo.trim().isEmpty();
   }
