@@ -7,82 +7,16 @@ import javax.swing.JOptionPane;
 public class App {
 
   public static void main(String[] args) {
-
     int op;
     ListaAlumnos lista = new ListaAlumnos();
+    
     do {
-      op = opciones();
-      switch (op) {
-        case 1 -> {
-          opAgregarAlumnos(lista);
-        }
-        case 2 -> {
-          JOptionPane.showMessageDialog(null, lista.presentar());
-        }
-        case 3 -> {
-          opBuscarAlumnoCodigo(lista);
-        }
-        case 4 -> {
-          presentarAlPorCarrera(lista);
-        }
-        case 5 -> {
-          totalAlumnosPorCarrera(lista);
-        }
-        case 6 -> {
-          ordenarAlPorCarrera(lista);
-        }
-        default -> {
-          System.out.println("Opcion no valida!!!");
-        }
-      }
+      op = mostrarMenu();
+      procesarOpcion(op, lista);
     } while (op != 7);
   }
 
-  // case 1
-  static void opAgregarAlumnos(ListaAlumnos lista) {
-    Alumno nuevo = new Alumno();
-    // Leer datos del alumno
-    String codigo, nombre, carrera;
-    int edad;
-
-    // Verificar si la lista tiene espacio disponible
-    if (lista.hayEspacio()) {
-
-      codigo = JOptionPane.showInputDialog("Codigo: ");
-      nombre = JOptionPane.showInputDialog("Nombre: ");
-      carrera = JOptionPane.showInputDialog("Carrera: ");
-      edad = Integer.parseInt(JOptionPane.showInputDialog("Edad: "));
-
-      // Instanciar un objeto (new) asignar espacion memoria
-      nuevo = new Alumno(codigo, nombre, carrera, edad);
-
-      lista.agregar(nuevo);
-      JOptionPane.showMessageDialog(null, "Alumno agregado");
-    } else {
-      JOptionPane.showMessageDialog(null, "Lista llena");
-    }
-  }
-
-  // case 3
-  static void opBuscarAlumnoCodigo(ListaAlumnos lista) {
-    // 1. Ingresar codigo buscar (MAIN)
-    // 2. Recorrer la lista de alumnos hasta el contador (LISTA)
-    // 2.1 Verificar (comparar) codigo ingresado - c. alumno (LISTA)
-    // 2.2 Mostrar datos de alumno encontrado (MAIN)
-    // 2.3 Mostrar error de alumno encontrado (MAIN)
-
-    String codigoBuscar = JOptionPane.showInputDialog("Ingrese codigo a buscar: ");
-
-    Alumno alEncontrado = lista.buscarPorCodigo(codigoBuscar);
-
-    if (alEncontrado != null) {
-      JOptionPane.showMessageDialog(null, "Alumno encontrado\n" + alEncontrado.alumnoEncontrado());
-    } else {
-      JOptionPane.showMessageDialog(null, "Alumno con codigo " + codigoBuscar + " no encontrado");
-    }
-  }
-
-  static int opciones() {
+  static int mostrarMenu() {
     String menu = ":::: Soluciones ATS ::::\n"
         + "1. Agregar alumno\n"
         + "2. Presentar alumnos\n"
@@ -91,119 +25,132 @@ public class App {
         + "5. Total alumnos por carrera\n"
         + "6. Ordenar alumnos por carrera\n"
         + "7. Salir";
-    int opcion = Integer.parseInt(JOptionPane.showInputDialog(menu));
-    return opcion;
-  }
-
-  // case 4
-  static void presentarAlPorCarrera(ListaAlumnos lista) {
-    // que muestre datos de todos los alumnos
-    String carreraBuscar = JOptionPane.showInputDialog("Ingrese la carrera a buscar: ");
-    // Clase de java para representar datos mutables permite modificar contenido
-    StringBuilder resultado = new StringBuilder("Alumnos de la carrera " + carreraBuscar + ":\n\n");
-    boolean encontrado = false;
-
-    // Recorrer la lista de alumnos
-    for (int i = 0; i < lista.getCantidad(); i++) {
-      Alumno alumno = lista.getAlumno(i);
-      if (alumno.getCarrera().equalsIgnoreCase(carreraBuscar)) {
-        resultado.append(alumno.alumnoEncontrado()).append("\n");
-        encontrado = true;
-      }
-    }
-
-    if (encontrado) {
-      JOptionPane.showMessageDialog(null, resultado.toString());
-    } else {
-      JOptionPane.showMessageDialog(null, "No se encontraron alumnos en la carrera " + carreraBuscar);
+    
+    try {
+      return Integer.parseInt(JOptionPane.showInputDialog(menu));
+    } catch (NumberFormatException e) {
+      JOptionPane.showMessageDialog(null, "Por favor ingrese un número válido");
+      return mostrarMenu();
     }
   }
 
-  // case 5
-  static void totalAlumnosPorCarrera(ListaAlumnos lista) {
-    // Muestra la cantidad de alumnos por carrera
-    int cantidad = lista.getCantidad();
-
-    if (cantidad == 0) {
-      JOptionPane.showMessageDialog(null, "No hay alumnos registrados!!!");
+  static void procesarOpcion(int opcion, ListaAlumnos lista) {
+    switch (opcion) {
+      case 1 -> agregarAlumno(lista);
+      case 2 -> mostrarTodosLosAlumnos(lista);
+      case 3 -> buscarAlumnoPorCodigo(lista);
+      case 4 -> presentarAlumnosPorCarrera(lista);
+      case 5 -> mostrarTotalAlumnosPorCarrera(lista);
+      case 6 -> mostrarAlumnosOrdenados(lista);
+      case 7 -> JOptionPane.showMessageDialog(null, "¡Gracias por usar el sistema!");
+      default -> JOptionPane.showMessageDialog(null, "Opción no válida");
     }
-
-    // Identificar carreras unicas y contar
-    String carreras[] = new String[cantidad];
-    int contador[] = new int[cantidad];
-    int totalCarreras = 0;
-
-    for (int i = 0; i < cantidad; i++) {
-      Alumno alumno = lista.getAlumno(i);
-      String carreraActual = alumno.getCarrera();
-      boolean carreraRegistrada = false;
-
-      // Buscar si la carrera ya fue registrada anteriormente
-      for (int j = 0; j < totalCarreras; j++) {
-        if (carreras[j].equals(carreraActual)) {
-          contador[j]++;
-          carreraRegistrada = true;
-          break;
-        }
-      }
-
-      // Si la carrera no fue registrada, agregarla al arreglo
-      if (!carreraRegistrada) {
-        carreras[totalCarreras] = carreraActual;
-        contador[totalCarreras] = 1; // Iniciar contador en 1
-        totalCarreras++;
-      }
-    }
-
-    // Mostrar resultados
-    StringBuilder resultado = new StringBuilder("Cantidad de alumnos por carrera:\n");
-    for (int i = 0; i < totalCarreras; i++) {
-      resultado.append(carreras[i]).append(": ").append(contador[i]).append(" alumno(s)\n");
-    }
-    JOptionPane.showMessageDialog(null, resultado.toString());
   }
 
-  // case 6
-  static void ordenarAlPorCarrera(ListaAlumnos lista) {
-    // Mostrar alumnos ordenados de forma alfabetica por carrera
-    int cantidad = lista.getCantidad();
-
-    if (cantidad == 0) {
-      JOptionPane.showMessageDialog(null, "No hay alumnos registrados aun!!!");
+  static void agregarAlumno(ListaAlumnos lista) {
+    if (lista.estaLlena()) {
+      JOptionPane.showMessageDialog(null, "Lista llena. No se pueden agregar más alumnos.");
       return;
     }
 
-    // Crear una copia de los alumnos
-    // Preservar orden original, solo presentacion, no romper el principio de encapsulacion
-    Alumno alumnosTemp[] = new Alumno[cantidad];
-    for (int i = 0; i < cantidad; i++) {
-      alumnosTemp[i] = lista.getAlumno(i);
-    }
-
-    // Ordenamiento usando bubble sort
-    for (int i = 0; i < cantidad - 1; i++) {
-      for (int j = 0; j < cantidad - i - 1; j++) {
-        if (alumnosTemp[j].getCarrera().compareToIgnoreCase(alumnosTemp[j + i].getCarrera()) > 0) {
-          Alumno temp = alumnosTemp[j];
-          alumnosTemp[j] = alumnosTemp[j + 1];
-          alumnosTemp[j + 1] = temp;
-        }
+    try {
+      String codigo = solicitarDato("Código:");
+      if (!Alumno.validarCodigo(codigo)) {
+        JOptionPane.showMessageDialog(null, "El código no puede estar vacío");
+        return;
       }
-    }
 
-    // Mostrar resultados
-    StringBuilder resultado = new StringBuilder("Alumnos ordenados por carrera:\n\n");
-    String carreraActual = "";
-
-    for (int i = 0; i < cantidad; i++) {
-      // si cambia la carrera mostramos el nombre de la nueva carrera
-      if (!alumnosTemp[i].getCarrera().equals(carreraActual)){
-        carreraActual = alumnosTemp[i].getCarrera();
-        resultado.append("\n").append(carreraActual).append("\n");
+      if (!lista.validarCodigoUnico(codigo.trim())) {
+        JOptionPane.showMessageDialog(null, "Ya existe un alumno con ese código");
+        return;
       }
-      resultado.append(alumnosTemp[i].alumnoEncontrado()).append("\n");
+
+      String nombre = solicitarDato("Nombre:");
+      if (!Alumno.validarNombre(nombre)) {
+        JOptionPane.showMessageDialog(null, "El nombre no puede estar vacío");
+        return;
+      }
+
+      String carrera = solicitarDato("Carrera:");
+      if (!Alumno.validarCarrera(carrera)) {
+        JOptionPane.showMessageDialog(null, "La carrera no puede estar vacía");
+        return;
+      }
+
+      String edadStr = solicitarDato("Edad:");
+      if (edadStr == null || edadStr.trim().isEmpty()) {
+        JOptionPane.showMessageDialog(null, "La edad no puede estar vacía");
+        return;
+      }
+
+      int edad = Integer.parseInt(edadStr);
+      if (!Alumno.validarEdad(edad)) {
+        JOptionPane.showMessageDialog(null, "La edad debe ser un número entre 1 y 119");
+        return;
+      }
+
+      Alumno nuevo = new Alumno(codigo.trim(), nombre.trim(), carrera.trim(), edad);
+      lista.agregar(nuevo);
+      JOptionPane.showMessageDialog(null, "Alumno agregado exitosamente");
+
+    } catch (NumberFormatException e) {
+      JOptionPane.showMessageDialog(null, "La edad debe ser un número válido");
+    }
+  }
+
+  static String solicitarDato(String mensaje) {
+    String dato = JOptionPane.showInputDialog(mensaje);
+    return dato;
+  }
+
+  static void mostrarTodosLosAlumnos(ListaAlumnos lista) {
+    JOptionPane.showMessageDialog(null, lista.presentar());
+  }
+
+  static void buscarAlumnoPorCodigo(ListaAlumnos lista) {
+    if (lista.estaVacia()) {
+      JOptionPane.showMessageDialog(null, "No hay alumnos registrados.");
+      return;
     }
 
-    JOptionPane.showMessageDialog(null, resultado.toString());
+    String codigo = solicitarDato("Ingrese el código a buscar:");
+    if (!Alumno.validarCodigo(codigo)) {
+      JOptionPane.showMessageDialog(null, "Debe ingresar un código válido");
+      return;
+    }
+
+    Alumno alumnoEncontrado = lista.buscarPorCodigo(codigo.trim());
+    
+    if (alumnoEncontrado != null) {
+      JOptionPane.showMessageDialog(null, "Alumno encontrado:\n" + alumnoEncontrado.alumnoEncontrado());
+    } else {
+      JOptionPane.showMessageDialog(null, "Alumno con código " + codigo + " no encontrado");
+    }
+  }
+
+  static void presentarAlumnosPorCarrera(ListaAlumnos lista) {
+    if (lista.estaVacia()) {
+      JOptionPane.showMessageDialog(null, "No hay alumnos registrados.");
+      return;
+    }
+
+    String carrera = solicitarDato("Ingrese la carrera a buscar:");
+    if (!Alumno.validarCarrera(carrera)) {
+      JOptionPane.showMessageDialog(null, "Debe ingresar una carrera válida");
+      return;
+    }
+
+    String resultado = lista.presentarAlumnosPorCarrera(carrera.trim());
+    JOptionPane.showMessageDialog(null, resultado);
+  }
+
+  static void mostrarTotalAlumnosPorCarrera(ListaAlumnos lista) {
+    String resultado = lista.obtenerTotalAlumnosPorCarrera();
+    JOptionPane.showMessageDialog(null, resultado);
+  }
+
+  static void mostrarAlumnosOrdenados(ListaAlumnos lista) {
+    String resultado = lista.obtenerAlumnosOrdenadosPorCarrera();
+    JOptionPane.showMessageDialog(null, resultado);
   }
 }
