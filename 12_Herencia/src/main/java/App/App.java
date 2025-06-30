@@ -8,10 +8,10 @@ import javax.swing.JOptionPane;
 public class App {
 
   public static void main(String[] args) {
-    Empleado objE = new Empleado("55555555", "Juan Perez", 28);
-    EmpleadoPlanilla objP = new EmpleadoPlanilla("Gerente", 5, "888888", "Ana LOpez", 40);
-    EmpleadoContratado objC = new EmpleadoContratado(20, 30, "88888", "Pedro Ramirez", 30);
-    EmpleadoTemporal objT = new EmpleadoTemporal(20, 30, "444444", "John Doe", 0);
+    //Empleado objE = new Empleado("55555555", "Juan Perez", 28);
+    EmpleadoPlanilla objP = new EmpleadoPlanilla("Gerente", 5, "888888", "Ana LOpez", 40, 1);
+    EmpleadoContratado objC = new EmpleadoContratado(20, 30, "88888", "Pedro Ramirez", 30, 2);
+    Empleado objT = new EmpleadoTemporal(20, 30, "444444", "John Doe", 20, 0);
 
     // Prueba individual de objetos de la herencia
 //    JOptionPane.showMessageDialog(null, "Empleado: \n" + objE.mostrar());
@@ -22,15 +22,19 @@ public class App {
 //    presentarObjeto(objP);
 //    presentarObjeto(objC);
 //    presentarObjeto(objT);
+
     // Lista
     ListaEmpleados lista = new ListaEmpleados();
 
-    lista.Agregar(objE);
+    //lista.Agregar(objE);
     lista.Agregar(objP);
     lista.Agregar(objC);
     lista.Agregar(objT);
 
     JOptionPane.showMessageDialog(null, lista.presentar());
+    lista.calcularSueldos();
+    JOptionPane.showMessageDialog(null, lista.presentar());
+
   }
 
   //presentarObjeto(obj);

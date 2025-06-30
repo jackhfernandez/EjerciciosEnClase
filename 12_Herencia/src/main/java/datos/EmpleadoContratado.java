@@ -7,13 +7,18 @@ public class EmpleadoContratado extends Empleado {
 
   public EmpleadoContratado() {
   }
+  
+  @Override
+  public void calcularSueldo(){
+    this.sueldo = this.horasTrabajadas* this.precioHora;
+  }
 
-  public EmpleadoContratado(int horasTrabajadas, double precioHora, String dni, String nombres, int edad) {
-    super(dni, nombres, edad);
+  public EmpleadoContratado(int horasTrabajadas, double precioHora, String dni, String nombres, int edad, int nroHijos) {
+    super(dni, nombres, edad, nroHijos);
     this.horasTrabajadas = horasTrabajadas;
     this.precioHora = precioHora;
   }
-
+  
   public int getHorasTrabajadas() {
     return horasTrabajadas;
   }
@@ -22,7 +27,9 @@ public class EmpleadoContratado extends Empleado {
     return precioHora;
   }
 
+  @Override
   public String mostrar() {
-    return super.mostrar() + " - " + this.horasTrabajadas + " - " + this.precioHora;
+    return super.mostrar() + " - " + this.horasTrabajadas + " - " + this.precioHora +
+        " - Suelgo: " + this.sueldo;
   }
 }

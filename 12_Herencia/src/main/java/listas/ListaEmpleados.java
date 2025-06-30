@@ -28,4 +28,10 @@ public class ListaEmpleados {
     }
     return datos;
   }
+  
+  public void calcularSueldos(){
+    for (int i = 0; i < this.contador; i++) {
+      this.empleados[i].calcularSueldo();
+    }
+  }
 }

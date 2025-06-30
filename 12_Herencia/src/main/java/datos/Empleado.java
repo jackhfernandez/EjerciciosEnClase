@@ -1,19 +1,32 @@
 // superclase clase padre
 package datos;
 
-public class Empleado {
+public abstract class Empleado {
 
   private String dni;
   private String nombres;
   private int edad;
+  protected double sueldo;
+  protected int nroHijos;
+  
+  public abstract void calcularSueldo();
 
+//  public void setSueldo(double sueldo) {
+//    this.sueldo = sueldo;
+//  }
+//
+//  public double getSueldo() {
+//    return sueldo;
+//  }
+  
   public Empleado() {
   }
 
-  public Empleado(String dni, String nombres, int edad) {
+  public Empleado(String dni, String nombres, int edad, int nroHijos) {
     this.dni = dni;
     this.nombres = nombres;
     this.edad = edad;
+    this.nroHijos = nroHijos;
   }
 
   public String getDni() {
