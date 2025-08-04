@@ -134,7 +134,7 @@ public class App {
     String reporte = clientes.obtenerInfoTodosDetallado();
     mostrarTexto("Reporte de Clientes\n\n" + reporte);
   }
-  
+
   private static void mostrarTexto(String message){
     JOptionPane.showMessageDialog(null, message);
   }
